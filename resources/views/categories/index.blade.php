@@ -28,8 +28,8 @@
                     <td>{{ $category->name }}</td>
                     <td>
                         <form action="{{ route('categories.destroy', $category) }}" method="POST">
-                            <!--<a class="btn btn-sm btn-info" href="{{ route('categories.show', $category->id) }}"> <i
-                                    class="fas fa-eye"></i></a>-->
+                            {{--<a class="btn btn-sm btn-info" href="{{ route('categories.show', $category->id) }}"> <i
+                                    class="fas fa-eye"></i></a>--}}
                             <a class="btn btn-sm btn-primary" href="{{ route('categories.edit', $category->id) }}"><i
                                     class="fas fa-edit"></i></a>
                             @csrf
