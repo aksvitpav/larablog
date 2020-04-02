@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
@@ -15,7 +15,12 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-        $posts = $post->all();
+        if (auth()->user()->role == 'author') {
+            $posts = $post->where('user_id', auth()->user()->id)->get();
+        }
+        else {
+            $posts = $post->all();
+        }
         return view('posts.index', compact('posts'));
     }
 
@@ -39,7 +44,7 @@ class PostController extends Controller
     public function store(Request $request, Post $post)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:posts',
             'content' => 'required',
             'category_id' => 'required',
             'user_id' => 'required',
@@ -55,9 +60,9 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Request $request, Post $post)
     {
-        //
+        return view('posts.show',compact('post'));
     }
 
     /**
@@ -89,7 +94,7 @@ class PostController extends Controller
         ]);
         $post->update($request->all());
         return redirect()->route('posts.index')
-                        ->with('status','пост успешно обновлен');
+                        ->with('status','Пост успешно обновлен');
     }
 
     /**

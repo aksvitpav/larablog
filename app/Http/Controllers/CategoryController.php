@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -14,8 +13,9 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
+        $role = auth()->user()->role;
         $categories = $category->all();
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact('categories', 'role'));
     }
 
     /**

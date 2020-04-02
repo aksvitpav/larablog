@@ -10,6 +10,6 @@ $factory->define(Post::class, function (Faker $faker) {
         'title' => $faker->sentence(5),
         'content' => $faker->paragraphs(5, true),
         'category_id' => $faker->numberBetween(1,3),
-        'user_id' => $faker->numberBetween(1,1),
+        'user_id' => $faker->numberBetween(1,2),
     ];
 });

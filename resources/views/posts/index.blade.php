@@ -29,18 +29,13 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->category->name }}</td>
                     <td class="d-flex justify-content-start">
-                        <a class="btn btn-sm btn-info mr-1" href="{{ route('posts.show', $post->id) }}"> <i
-                                class="fas fa-eye"></i></a>
-                        @if ($post->user->name == Auth::user()->name)
-                        <a class="btn btn-sm btn-primary mr-1" href="{{ route('posts.edit', $post->id) }}"><i
-                                class="fas fa-edit"></i></a>
+                        <a class="btn btn-sm btn-info mr-1" href="{{ route('posts.show', $post->id) }}"> <i class="fas fa-eye"></i></a>
+                        <a class="btn btn-sm btn-primary mr-1" href="{{ route('posts.edit', $post->id) }}"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('posts.destroy', $post) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Удалить пост?');"><i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Удалить пост?');"><i class="fas fa-trash-alt"></i></button>
                         </form>
-                        @endif
                     </td>
                 </tr>
                 @endforeach
