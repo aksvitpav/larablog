@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,9 +13,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post)
     {
-        //
+        $posts = $post->all();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -22,9 +24,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        //
+        $categories = $category->all(); 
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -33,9 +36,17 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        $post->create($request->all());
+        return redirect()->route('posts.index')
+                        ->with('status','Пост успешно создан');    
     }
 
     /**
@@ -55,9 +66,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Category $category)
     {
-        //
+        $categories = $category->all();
+        return view('posts.edit',compact('post', 'categories'));
     }
 
     /**
@@ -69,7 +81,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        $post->update($request->all());
+        return redirect()->route('posts.index')
+                        ->with('status','пост успешно обновлен');
     }
 
     /**
@@ -80,6 +100,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('posts.index')
+                        ->with('status','Пост успешно удален');
     }
 }

@@ -29,8 +29,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
-                        <strong>Название категории:</strong>
-                        <input type="text" name="name" class="form-control" placeholder="Введите название категории">
+                        <label for="category-name">Название категории:</label>
+                        <input type="text" id="category-name" name="name" class="form-control" placeholder="Введите название категории">
                     </div>
                 </div>
                 <div class="col-12">

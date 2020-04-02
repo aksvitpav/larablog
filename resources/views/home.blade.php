@@ -9,7 +9,7 @@
       <div class="card-body">
         <h4 class="card-title">Посты</h4>
         <p class="card-text text-center display-3 font-weight-bold">{{ $posts_count }}</p>
-        <a href="#" class="btn btn-primary">Просмотреть</a>
+        <a href="{{ route('posts.index') }}" class="btn btn-primary">Просмотреть</a>
       </div>
     </div>
   </div>

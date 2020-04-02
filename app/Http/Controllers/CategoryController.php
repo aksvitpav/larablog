@@ -23,7 +23,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
         return view('categories.create');
     }
@@ -41,7 +41,7 @@ class CategoryController extends Controller
         ]);
         $category->create($request->all());
         return redirect()->route('categories.index')
-                        ->with('status','Category updated successfully');
+                        ->with('status','Категория успешно создана');
     }
     /**
      * Display the specified resource.
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         ]);
         $category->update($request->all());
         return redirect()->route('categories.index')
-                        ->with('status','Category updated successfully');
+                        ->with('status','Категория успешно обновлена');
     }
 
     /**
@@ -92,6 +92,6 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('categories.index')
-                        ->with('status','Category deleted successfully');
+                        ->with('status','Категория успешно удалена');
     }
 }

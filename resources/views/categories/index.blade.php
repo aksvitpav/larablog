@@ -26,16 +26,13 @@
                 <tr>
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
-                    <td>
+                    <td class="d-flex justify-content-start">
+                        {{--<a class="btn btn-sm btn-info" href="{{ route('categories.show', $category->id) }}"> <i class="fas fa-eye"></i></a>--}}
+                        <a class="btn btn-sm btn-primary mr-1" href="{{ route('categories.edit', $category->id) }}"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('categories.destroy', $category) }}" method="POST">
-                            {{--<a class="btn btn-sm btn-info" href="{{ route('categories.show', $category->id) }}"> <i
-                                    class="fas fa-eye"></i></a>--}}
-                            <a class="btn btn-sm btn-primary" href="{{ route('categories.edit', $category->id) }}"><i
-                                    class="fas fa-edit"></i></a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"><i
-                                    class="fas fa-trash-alt"></i></button>
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Удалить категорию?');"> <i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                 </tr>

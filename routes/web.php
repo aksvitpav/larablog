@@ -22,7 +22,9 @@ Route::group(['middleware' => 'auth'], function(){
     //Enter to CPanel
     Route::get('/home', 'HomeController@index')->name('home');
     //Manage Categories
-    Route::resource('/home/categories','CategoryController')->except(['show']);;    
+    Route::resource('/home/categories','CategoryController')->except(['show']);    
+    //Manage Posts
+    Route::resource('/home/posts','PostController');    
 });
 
 
