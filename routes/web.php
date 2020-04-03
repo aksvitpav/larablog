@@ -19,6 +19,8 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/category/{category_id}', 'WelcomeController@category')->name('welcome.category');
 //Start Page User Filter
 Route::get('/user/{user_id}', 'WelcomeController@user')->name('welcome.user');
+//Show Post
+Route::get('/post/{post_id}', 'WelcomeController@post')->name('welcome.post');
 
 Route::group(['middleware' => 'auth'], function(){
     //View Blog and Enter to CPanel

@@ -43,4 +43,11 @@ class WelcomeController extends Controller
         $posts = $post->where('user_id', $user_id)->paginate(5);
         return view('welcome', compact('posts','categories'));
     }
+
+    public function post(Request $request, $post_id, Category $category, Post $post)
+    {
+        $categories = $category->all();
+        $current_post = $post->where('id', $post_id)->get();
+        return view('posts.post', compact('current_post','categories'));
+    }
 }

@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h2 class="card-title">{{ $post->title }}</h2>
                 <p class="card-text text-justify">{{ substr($post->content, 0, 400).'...' }}</p>
-                <a href="#" class="btn btn-sm btn-primary">Подробнее</a>
+                <a href="{{ route('welcome.post', $post->id) }}" class="btn btn-sm btn-primary">Подробнее</a>
             </div>
             <div class="card-footer">
                 <span class="badge">Автор: <a href="{{ route('welcome.user', $post->user->id) }}">{{ $post->user->name }}</a></span>
