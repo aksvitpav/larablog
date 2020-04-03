@@ -13,21 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//Start Page
+Route::get('/', 'WelcomeController@index')->name('welcome');
+//Start Page Category Filter
+Route::get('/category/{category_id}', 'WelcomeController@category')->name('welcome.category');
+//Start Page User Filter
+Route::get('/user/{user_id}', 'WelcomeController@user')->name('welcome.user');
 
 Route::group(['middleware' => 'auth'], function(){
-    //Enter to CPanel
+    //View Blog and Enter to CPanel
     Route::get('/home', 'HomeController@index')->name('home');
     //Manage Categories
     Route::resource('/home/categories','CategoryController')->except(['show']);    
     //Manage Posts
     Route::resource('/home/posts','PostController');    
 });
-
-
-
-
-
