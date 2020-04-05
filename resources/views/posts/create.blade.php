@@ -24,7 +24,7 @@
 @endif
 <div class="row">
     <div class="col">
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="post-title">Заголовок поста:</label>
@@ -41,6 +41,10 @@
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="post-image">Изображение поста:</label>
+                <input type="file" class="form-control-file" name="image">
             </div>
             <input type="hidden" name="user_id" value="{{Auth::id()}}">
             <div class="col-12">

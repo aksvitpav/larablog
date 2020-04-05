@@ -46,12 +46,15 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|unique:posts',
             'content' => 'required',
+            'image' => 'sometimes|image',
             'category_id' => 'required',
             'user_id' => 'required',
         ]);
-        $post->create($request->all());
-        return redirect()->route('posts.index')
-                        ->with('status','Пост успешно создан');    
+
+        dd($request->image);
+        //$post->create($request->all());
+        //return redirect()->route('posts.index')
+        //                ->with('status','Пост успешно создан');    
     }
 
     /**
