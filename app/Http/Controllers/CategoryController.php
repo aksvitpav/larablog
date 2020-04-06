@@ -25,7 +25,8 @@ class CategoryController extends Controller
      */
     public function create(Category $category)
     {
-        return view('categories.create');
+        $role = auth()->user()->role;
+        return view('categories.create', compact('role'));
     }
 
     /**
@@ -62,7 +63,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit',compact('category'));
+        $role = auth()->user()->role;
+        return view('categories.edit',compact('category', 'role'));
     }
 
     /**

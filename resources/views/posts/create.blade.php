@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label for="post-image">Изображение поста:</label>
-                <input type="file" class="form-control-file" name="image">
+                <input type="file" id="post-image" class="form-control-file" name="post_image">
             </div>
             <input type="hidden" name="user_id" value="{{Auth::id()}}">
             <div class="col-12">

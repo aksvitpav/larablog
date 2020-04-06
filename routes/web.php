@@ -28,5 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
     //Manage Categories
     Route::resource('/home/categories','CategoryController')->except(['show']);    
     //Manage Posts
-    Route::resource('/home/posts','PostController');    
+    Route::resource('/home/posts','PostController');
+    //Manage Users
+    Route::resource('/home/users','UserController')->except(['show', 'create', 'store']);
 });

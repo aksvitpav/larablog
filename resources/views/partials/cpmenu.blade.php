@@ -8,4 +8,10 @@
   <li class="nav-item">
     <a class="nav-link {{ (request()->is('home/categories')) ? 'active' : '' }}" href="{{ route('categories.index') }}">Категории</a>
   </li>
+  @if ($role == 'admin')
+  <li class="nav-item">
+      <a class="nav-link {{ (request()->is('home/users')) ? 'active' : '' }}" href="{{ route('users.index') }}">Авторы</a>
+  </li>
+  @endif
+
 </ul>

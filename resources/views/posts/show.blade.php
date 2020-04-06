@@ -23,6 +23,9 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                @if ($post->image)
+                <img src="{{ asset('storage/'.$post->image) }}" class="card-img-top">
+                @endif
                 <h1 class="card-title">
                     {{ $post->title }}
                 </h1>

@@ -24,7 +24,7 @@
 @endif
 <div class="row">
     <div class="col">
-        <form action="{{ route('posts.update',$post->id) }}" method="POST">
+        <form action="{{ route('posts.update',$post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
@@ -42,6 +42,10 @@
                     <option @if ($post->category->id == $category->id) selected="selected" @endif value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="post-image">Изображение поста:</label>
+                <input type="file" id="post-image" class="form-control-file" name="post_image">
             </div>
             <input type="hidden" name="user_id" value="{{Auth::id()}}">
             <div class="col-12">

@@ -5,6 +5,7 @@ use Auth;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -15,13 +16,14 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-        if (auth()->user()->role == 'author') {
+        $role = auth()->user()->role;
+        if ($role == 'author') {
             $posts = $post->where('user_id', auth()->user()->id)->get();
         }
         else {
             $posts = $post->all();
         }
-        return view('posts.index', compact('posts'));
+        return view('posts.index', compact('posts', 'role'));
     }
 
     /**
@@ -30,9 +32,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Category $category)
-    {
+    {   
+        $role = auth()->user()->role;
         $categories = $category->all(); 
-        return view('posts.create', compact('categories'));
+        return view('posts.create', compact('categories', 'role'));
     }
 
     /**
@@ -50,11 +53,15 @@ class PostController extends Controller
             'category_id' => 'required',
             'user_id' => 'required',
         ]);
-
-        dd($request->image);
-        //$post->create($request->all());
-        //return redirect()->route('posts.index')
-        //                ->with('status','Пост успешно создан');    
+        if ($request->hasFile('post_image')) {
+            $image = $request->file('post_image');
+            $imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
+            $image -> move(public_path('storage'), $imageName);
+            $request['image'] = $imageName;
+        }
+        $post->create($request->all());
+        return redirect()->route('posts.index')
+                        ->with('status','Пост успешно создан');    
     }
 
     /**
@@ -64,8 +71,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Post $post)
-    {
-        return view('posts.show',compact('post'));
+    {   
+        $role = auth()->user()->role;
+        return view('posts.show',compact('post', 'role'));
     }
 
     /**
@@ -76,8 +84,9 @@ class PostController extends Controller
      */
     public function edit(Post $post, Category $category)
     {
+        $role = auth()->user()->role;
         $categories = $category->all();
-        return view('posts.edit',compact('post', 'categories'));
+        return view('posts.edit',compact('post', 'categories', 'role'));
     }
 
     /**
@@ -92,9 +101,16 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'image' => 'sometimes|image',
             'category_id' => 'required',
             'user_id' => 'required',
         ]);
+        if ($request->hasFile('post_image')) {
+            $image = $request->file('post_image');
+            $imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
+            $image -> move(public_path('storage'), $imageName);
+            $request['image'] = $imageName;
+        }
         $post->update($request->all());
         return redirect()->route('posts.index')
                         ->with('status','Пост успешно обновлен');
@@ -107,7 +123,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
-    {
+    {   
+        Storage::disk('public')->delete($post->image);
         $post->delete();
         return redirect()->route('posts.index')
                         ->with('status','Пост успешно удален');
