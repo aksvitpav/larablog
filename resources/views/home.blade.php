@@ -22,5 +22,14 @@
       </div>
     </div>
   </div>
+  <div class="col-sm-4">
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title">Авторы</h4>
+              <p class="card-text text-center display-3 font-weight-bold">{{ $users_count }}</p>
+              <a href="{{ route('users.index') }}" class="btn btn-primary">Просмотреть</a>
+          </div>
+      </div>
+  </div>
 </div>
 @endsection

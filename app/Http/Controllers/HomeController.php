@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,11 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Category $category, Post $post)
+    public function index(Category $category, Post $post, User $user)
     {
         $categories_count = $category->all()->count();
         $posts_count = $post->all()->count();
-        $role = auth()->user()->role;
-        return view('home', compact('posts_count','categories_count', 'role'));
+        $users_count = $user->all()->count();
+        return view('home', compact('posts_count','categories_count', 'users_count'));
     }
 }
