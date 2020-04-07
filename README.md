@@ -36,3 +36,6 @@ Larablog - это мой первый проект на Laravel.
 6. Создаем символьную ссылку для storage для хранения картинок постов: **php artisan storage:link**
 7. Создаем даблицы в БД: **php artisan migrate**
 8. Наполняем БД тестовыми данными: **php artisan db:seed** (таблица постов может наполнятся долго!!! картинки к постам берутся с сайта lorempixel.com, который очень медленно работает иногда!)
+9. После установки в базе будут созданы пользователи:
+    # Admin: login - admin@gmail.com, password - 12345678
+    # Author: login - author@gmail.com, password - 12345678
