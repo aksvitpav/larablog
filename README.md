@@ -2,15 +2,21 @@
 
 ## О Larablog
 
-Larablog - это мой первый проект на Laravel:
+Larablog - это мой первый проект на Laravel.
+Функционал:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*ul Авторизация
+*ul Неавторизированные пользователи:
+    1.ol Просматривают все посты
+    2.ol Посты можно фильтровать по категориям, авторам
+*ul Авторизированные пользователи:
+    1.ol При авторизации по-умолчанию пользователь получает учетку типа "Автор"
+    2.ol Автор может:
+        *ul Видеть статистику блога: количество постов блога, количество категорий блога, количество зарегистрированных пользователей блога
+        *ul Добавлять новые посты
+        *ul Редактировать/удалять только свои посты
+        *ul Видеть список категорий блога
+        *ul Видеть список пользователей блога
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
