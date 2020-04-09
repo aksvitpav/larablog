@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 //Start Page
 Route::get('/', 'WelcomeController@index')->name('welcome');
 //Start Page Category Filter
@@ -21,7 +20,7 @@ Route::get('/category/{category_id}', 'WelcomeController@category')->name('welco
 Route::get('/user/{user_id}', 'WelcomeController@user')->name('welcome.user');
 //Show Post
 Route::get('/post/{post_id}', 'WelcomeController@post')->name('welcome.post');
-
+Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     //View Blog and Enter to CPanel
     Route::get('/home', 'HomeController@index')->name('home');

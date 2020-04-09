@@ -15,7 +15,7 @@ class WelcomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -26,7 +26,7 @@ class WelcomeController extends Controller
     public function index(Category $category, Post $post)
     {
         $categories = $category->all();
-        $posts = $post->paginate(5);
+        $posts = $post->latest()->paginate(5);
         return view('welcome', compact('posts','categories'));
     }
 
