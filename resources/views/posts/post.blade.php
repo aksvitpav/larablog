@@ -20,9 +20,9 @@
                 </div>
             </div>
             <div class="card-footer">
-                <small>Автор: </small><span class="badge badge-primary">{{ $current_post->first()->user->name }}</span>
-                <small>Категория: </small><span class="badge badge-primary">{{ $current_post->first()->category->name }}</span>
-                <small>Опубликовано: </small><span class="badge badge-primary">{{ $current_post->first()->created_at->diffforHumans() }}</span>
+                <small>Автор: </small><span class="badge badge-warning">{{ $current_post->first()->user->name }}</span>
+                <small>Категория: </small><span class="badge badge-warning">{{ $current_post->first()->category->name }}</span>
+                <small>Опубликовано: </small><span class="badge badge-warning">{{ $current_post->first()->created_at->diffforHumans() }}</span>
             </div>
         </div>
     </div>
