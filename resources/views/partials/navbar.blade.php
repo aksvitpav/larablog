@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
+<nav class="navbar navbar-expand-md navbar-dark stylish-color shadow-sm sticky-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('welcome') }}">
             <img src="{{ asset('images/logo.svg') }}" height="30" alt="Larablog logo">
