@@ -8,7 +8,7 @@
     <div class="card text-white bg-primary mb-3">
         <div class="card-header">Посты</div>
         <div class="card-body">
-            <p class="text-white text-center display-3">{{ $posts_count }}</p>
+            <p class="text-white text-center display-3">{{ $user_posts_count }}/{{ $posts_count }}</p>
             <a href="{{ route('posts.index') }}" class="card-link text-white">Просмотреть</a>
         </div>
     </div>

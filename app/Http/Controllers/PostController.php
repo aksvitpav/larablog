@@ -18,10 +18,10 @@ class PostController extends Controller
     {
         $role = auth()->user()->role;
         if ($role == 'author') {
-            $posts = $post->where('user_id', auth()->user()->id)->get();
+            $posts = $post->where('user_id', auth()->user()->id)->paginate(10);
         }
         else {
-            $posts = $post->paginate(10);
+            $posts = $post->orderBy('user_id')->paginate(10);
         }
         return view('posts.index', compact('posts'));
     }

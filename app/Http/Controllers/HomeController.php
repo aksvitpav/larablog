@@ -28,7 +28,8 @@ class HomeController extends Controller
     {
         $categories_count = $category->all()->count();
         $posts_count = $post->all()->count();
+        $user_posts_count = $post->where('user_id', auth()->user()->id)->count();
         $users_count = $user->all()->count();
-        return view('home', compact('posts_count','categories_count', 'users_count'));
+        return view('home', compact('posts_count', 'user_posts_count', 'categories_count', 'users_count'));
     }
 }
