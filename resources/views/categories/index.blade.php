@@ -4,24 +4,23 @@
 
 @section('content')
 <div class="row">
-
-    <div class="col-md-10">
-        <h2>Категории блога</h2>
+    <div class="col-10">
+        <h1><span class="badge badge-primary">Категории блога</span></h1>
     </div>
     @if (auth()->user()->role == 'admin')
-    <div class="col-md-2">
-        <a class="btn btn-success" href="{{ route('categories.create') }}"><i class="fas fa-plus-square"></i></a>
+    <div class="col-2 col-2 d-flex justify-content-end">
+        <a class="btn btn-success px-3" href="{{ route('categories.create') }}" title="Создать новую категорию"><i class="fas fa-plus-square"></i></a>
     </div>
     @endif
 </div>
 <div class="row">
     <div class="col">
-        <table class="table">
+        <table class="table table-striped table-borderless">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Название</th>
-                    @if (auth()->user()->role == 'admin')<th scope="col">Действия</th>@endif
+                    <th scope="col" class="font-weight-bold">id</th>
+                    <th scope="col" class="font-weight-bold">Название</th>
+                    @if (auth()->user()->role == 'admin')<th scope="col" class="font-weight-bold">Действия</th>@endif
                 </tr>
             </thead>
             <tbody>
@@ -30,12 +29,12 @@
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
                     @if (auth()->user()->role == 'admin')
-                    <td class="d-flex justify-content-start">
-                        <a class="btn btn-sm btn-primary mr-1" href="{{ route('categories.edit', $category->id) }}"><i class="fas fa-edit"></i></a>
+                    <td class="d-flex align-items-center">
+                        <a class="btn btn-sm btn-primary px-2 mr-1" href="{{ route('categories.edit', $category->id) }}" title="Редактировать категорию"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('categories.destroy', $category) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Удалить категорию?');"> <i class="fas fa-trash-alt"></i></button>
+                            <button type="submit" class="btn btn-sm btn-danger px-2 m-0" onclick="return confirm('Удалить категорию?');" title="Удалить категорию"> <i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                     @endif
@@ -45,4 +44,5 @@
         </table>
     </div>
 </div>
+@include('partials.pagination', ['data'=>$categories])
 @endsection

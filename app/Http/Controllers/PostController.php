@@ -21,7 +21,7 @@ class PostController extends Controller
             $posts = $post->where('user_id', auth()->user()->id)->get();
         }
         else {
-            $posts = $post->all();
+            $posts = $post->paginate(10);
         }
         return view('posts.index', compact('posts'));
     }
