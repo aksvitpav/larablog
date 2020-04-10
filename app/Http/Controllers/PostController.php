@@ -6,6 +6,8 @@ use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -18,10 +20,10 @@ class PostController extends Controller
     {
         $role = auth()->user()->role;
         if ($role == 'author') {
-            $posts = $post->where('user_id', auth()->user()->id)->paginate(10);
+            $posts = $post->where('user_id', auth()->user()->id)->orderByDesc('created_at')->paginate(10);
         }
         else {
-            $posts = $post->orderBy('user_id')->paginate(10);
+            $posts = $post->orderByDesc('created_at')->paginate(10);
         }
         return view('posts.index', compact('posts'));
     }
@@ -54,8 +56,7 @@ class PostController extends Controller
         ]);
         if ($request->hasFile('post_image')) {
             $image = $request->file('post_image');
-            $imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
-            $image -> move(public_path('storage'), $imageName);
+            $imageName = Str::of(Storage::putFile('public',$image))->basename(); //$imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension(); //$image -> move(public_path('storage'), $imageName);
             $request['image'] = $imageName;
         }
         $post->create($request->all());
@@ -103,9 +104,11 @@ class PostController extends Controller
             'user_id' => 'required',
         ]);
         if ($request->hasFile('post_image')) {
+            if (Storage::disk('public')->exists($post->image)) {
+                Storage::disk('public')->delete($post->image);
+            }
             $image = $request->file('post_image');
-            $imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
-            $image -> move(public_path('storage'), $imageName);
+            $imageName = Str::of(Storage::putFile('public',$image))->basename(); //$imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension(); //$image -> move(public_path('storage'), $imageName);
             $request['image'] = $imageName;
         }
         $post->update($request->all());
@@ -121,7 +124,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {   
-        Storage::disk('public')->delete($post->image);
+        if (Storage::disk('public')->exists($post->image)) {
+            Storage::disk('public')->delete($post->image);
+        }
         $post->delete();
         return redirect()->route('posts.index')
                         ->with('status','Пост успешно удален');
