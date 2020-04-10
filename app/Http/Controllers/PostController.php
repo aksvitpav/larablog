@@ -23,7 +23,7 @@ class PostController extends Controller
         else {
             $posts = $post->all();
         }
-        return view('posts.index', compact('posts', 'role'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -33,9 +33,8 @@ class PostController extends Controller
      */
     public function create(Category $category)
     {   
-        $role = auth()->user()->role;
         $categories = $category->all(); 
-        return view('posts.create', compact('categories', 'role'));
+        return view('posts.create', compact('categories'));
     }
 
     /**
@@ -72,8 +71,7 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {   
-        $role = auth()->user()->role;
-        return view('posts.show',compact('post', 'role'));
+        return view('posts.show',compact('post'));
     }
 
     /**
@@ -84,9 +82,8 @@ class PostController extends Controller
      */
     public function edit(Post $post, Category $category)
     {
-        $role = auth()->user()->role;
         $categories = $category->all();
-        return view('posts.edit',compact('post', 'categories', 'role'));
+        return view('posts.edit',compact('post', 'categories'));
     }
 
     /**

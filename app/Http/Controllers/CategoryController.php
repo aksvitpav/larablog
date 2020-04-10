@@ -13,9 +13,8 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
-        $role = auth()->user()->role;
         $categories = $category->all();
-        return view('categories.index', compact('categories', 'role'));
+        return view('categories.index', compact('categories'));
     }
 
     /**

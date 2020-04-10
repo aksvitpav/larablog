@@ -14,7 +14,6 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
-        $role = auth()->user()->role;
         $users = $user->all();
         return view('users.index', compact('users','role'));
     }

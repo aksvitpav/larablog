@@ -8,7 +8,7 @@
     <div class="col-md-10">
         <h2>Категории блога</h2>
     </div>
-    @if ($role == 'admin')
+    @if (auth()->user()->role == 'admin')
     <div class="col-md-2">
         <a class="btn btn-success" href="{{ route('categories.create') }}"><i class="fas fa-plus-square"></i></a>
     </div>
@@ -21,7 +21,7 @@
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Название</th>
-                    @if ($role == 'admin')<th scope="col">Действия</th>@endif
+                    @if (auth()->user()->role == 'admin')<th scope="col">Действия</th>@endif
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                 <tr>
                     <th scope="row">{{ $category->id }}</th>
                     <td>{{ $category->name }}</td>
-                    @if ($role == 'admin')
+                    @if (auth()->user()->role == 'admin')
                     <td class="d-flex justify-content-start">
                         <a class="btn btn-sm btn-primary mr-1" href="{{ route('categories.edit', $category->id) }}"><i class="fas fa-edit"></i></a>
                         <form action="{{ route('categories.destroy', $category) }}" method="POST">
