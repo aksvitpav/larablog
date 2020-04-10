@@ -13,4 +13,5 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .copy('node_modules/mdbootstrap/css/mdb.css', 'public/css/mdb.css');
+    .copy('node_modules/mdbootstrap/css/mdb.css', 'public/css/mdb.css')
+    .copy('node_modules/mdbootstrap/js/mdb.js', 'public/js/mdb.js');

@@ -9,6 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/mdb.js') }}" defer></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
@@ -23,11 +24,8 @@
                     @include('partials.cpmenu')
                 </div>
                 <div class="col-md-9">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
+                    @include('partials.success')
+                    @include('partials.error')
                     @yield('content')
                 </div>
             </div>
