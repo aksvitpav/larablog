@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h2>Новый пост</h2>
+    <h1><span class="badge badge-primary">Новый пост</span></h1>
     </div>
 </div>
 <div class="row">
@@ -34,7 +34,7 @@
             </div>
             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             <button type="submit" class="btn btn-primary">ОК</button>
-            <a class="btn btn-primary" href="{{ route('posts.index') }}"> Отмена</a>
+            <a class="btn btn-primary" href="{{ route('posts.index') }}">Отмена</a>
         </form>
     </div>
 </div>
