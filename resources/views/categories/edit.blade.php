@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-    <h1><span class="badge badge-primary">Редактировать категорию</span></h1>
+        <h1><span class="badge badge-primary">Редактировать категорию</span></h1>
     </div>
 </div>
 <div class="row">
@@ -17,10 +17,8 @@
                 <input type="text" id="category-name" name="name" class="form-control" value="{{ $category->name }}">
                 <label for="category-name">Имя категории</label>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">ОК</button>
-                <a class="btn btn-primary" href="{{ route('categories.index') }}">Отмена</a>
-            </div>
+            <button type="submit" class="btn btn-primary">ОК</button>
+            <a class="btn btn-primary" href="{{ route('categories.index') }}">Отмена</a>
         </form>
     </div>
 </div>
