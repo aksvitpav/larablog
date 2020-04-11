@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUser;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -68,12 +69,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
-        $request->validate([
-        'name' => 'required',
-        'role' => 'required',
-        ]);
+        $request->validated();
         $user->update($request->all());
         return redirect()->route('users.index')
         ->with('status','Данные пользователя успешно обновлены');

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Illuminate\Support\Str;
+use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 
 class PostController extends Controller
 {
@@ -45,15 +47,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Post $post)
+    public function store(StorePost $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required|unique:posts',
-            'content' => 'required',
-            'image' => 'sometimes|image',
-            'category_id' => 'required',
-            'user_id' => 'required',
-        ]);
+        /*$request->validate([
+        ]);*/
+        $request->validated();
         if ($request->hasFile('post_image')) {
             $image = $request->file('post_image');
             $imageName = Str::of(Storage::putFile('public',$image))->basename(); //$imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension(); //$image -> move(public_path('storage'), $imageName);
@@ -94,15 +92,9 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePost $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'image' => 'sometimes|image',
-            'category_id' => 'required',
-            'user_id' => 'required',
-        ]);
+        $request->validated();
         if ($request->hasFile('post_image')) {
             if (Storage::disk('public')->exists($post->image)) {
                 Storage::disk('public')->delete($post->image);
