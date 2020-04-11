@@ -24,6 +24,7 @@
                     </div>
                     <div class="col-md-3">
                         @yield('navigation')
+                        <contact-component></contact-component>
                     </div>
                 </div>
             </div>
