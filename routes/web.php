@@ -20,6 +20,8 @@ Route::get('/category/{category_id}', 'WelcomeController@category')->name('welco
 Route::get('/user/{user_id}', 'WelcomeController@user')->name('welcome.user');
 //Show Post
 Route::get('/post/{post_id}', 'WelcomeController@post')->name('welcome.post');
+//Send message to Admin
+Route::get('/contact', 'ContactController@index')->name('welcome.contact');
 Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     //View Blog and Enter to CPanel
