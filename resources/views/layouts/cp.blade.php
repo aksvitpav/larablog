@@ -18,7 +18,8 @@
 <body>
     <div id="app">
         @include('partials.navbar')
-        <div class="container py-4">
+        <main class="py-4">
+        <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     @include('partials.cpmenu')
@@ -30,6 +31,7 @@
                 </div>
             </div>
         </div>
+        </main>
     </div>
 </body>
 
