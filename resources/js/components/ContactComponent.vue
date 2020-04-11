@@ -6,15 +6,15 @@
         <div class="card-body" v-if="hover">
           <form action="#" @submit.prevent="submit" method="GET">
             <div class="md-form form-group mt-1">
-              <input type="text" class="form-control" id="formContactName" name="name" v-model="fields.name" />
+              <input type="text" class="form-control" id="formContactName" name="name" v-model="fields.name" required />
               <label for="formContactName">Имя</label>
             </div>
             <div class="md-form form-group mt-1">
-              <input type="email" class="form-control" id="formContactEmail" name="email" v-model="fields.email" />
+              <input type="email" class="form-control" id="formContactEmail" name="email" v-model="fields.email" required />
               <label for="formContactEmail">E-mail</label>
             </div>
             <div class="md-form mt-4">
-              <textarea id="formContactText" class="md-textarea form-control" rows="3" name="text" v-model="fields.text"></textarea>
+              <textarea id="formContactText" class="md-textarea form-control" rows="3" name="text" v-model="fields.text" required></textarea>
               <label for="formContactText">Сообщение</label>
             </div>
             <button type="submit" class="btn btn-sm btn-primary btn-block mb-1">Отправить</button>
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
         submit() {
-            axios.get(this.action, this.fields).then(response => {
+            axios.post(this.action, this.fields).then(response => {
                 this.fields = {};
                 this.hover = false;
             })

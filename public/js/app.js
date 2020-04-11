@@ -1954,7 +1954,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
-      axios.get(this.action, this.fields).then(function (response) {
+      axios.post(this.action, this.fields).then(function (response) {
         _this.fields = {};
         _this.hover = false;
       });
@@ -37383,7 +37383,8 @@ var render = function() {
                         attrs: {
                           type: "text",
                           id: "formContactName",
-                          name: "name"
+                          name: "name",
+                          required: ""
                         },
                         domProps: { value: _vm.fields.name },
                         on: {
@@ -37415,7 +37416,8 @@ var render = function() {
                         attrs: {
                           type: "email",
                           id: "formContactEmail",
-                          name: "email"
+                          name: "email",
+                          required: ""
                         },
                         domProps: { value: _vm.fields.email },
                         on: {
@@ -37447,7 +37449,8 @@ var render = function() {
                         attrs: {
                           id: "formContactText",
                           rows: "3",
-                          name: "text"
+                          name: "text",
+                          required: ""
                         },
                         domProps: { value: _vm.fields.text },
                         on: {
