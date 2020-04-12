@@ -13,6 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
+        Schema::defaultStringLength(191);
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
