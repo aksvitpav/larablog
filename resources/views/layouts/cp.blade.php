@@ -10,6 +10,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/mdb.js') }}" defer></script>
+    <!-- Favicon -->
+    <link rel='shortcut icon' href='public/favicon.ico' type='image/x-icon'>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
