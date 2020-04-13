@@ -25,7 +25,13 @@ class StoreCategory extends FormRequest
     {
         return [
             'name' => 'required|unique:categories|max:255',
-            'name.required' => 'Поле Имя категории обязательно для заполнения.',
         ];
     }
+
+    public function messages()
+{
+    return [
+        'name.required' => 'Поле Имя категории обязательно для заполнения.',
+    ];
+}
 }
