@@ -57,6 +57,11 @@ class PostController extends Controller
             $imageName = Str::of(Storage::putFile('public',$image))->basename(); //$imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension(); //$image -> move(public_path('storage'), $imageName);
             $request['image'] = $imageName;
         }
+        if ($request->hasFile('post_image2')) {
+            $image = $request->file('post_image2');
+            $imageName = Str::of(Storage::putFile('public',$image))->basename(); //$imageName = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension(); //$image -> move(public_path('storage'), $imageName);
+            $request['image2'] = $imageName;
+        }
         $post->create($request->all());
         return redirect()->route('posts.index')
                         ->with('status','Пост успешно создан');    

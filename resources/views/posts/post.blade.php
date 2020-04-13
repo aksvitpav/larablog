@@ -12,6 +12,9 @@
                 @if ($current_post->first()->image)
                 <img src="{{ asset('storage/'.$current_post->first()->image) }}" class="card-img-top">
                 @endif
+                @if ($current_post->first()->image2)
+                <img src="{{ asset('storage/'.$current_post->first()->image2) }}" class="card-img-top">
+                @endif
                 <h1 class="card-title">
                     {{ $current_post->first()->title }}
                 </h1>

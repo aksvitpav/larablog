@@ -29,8 +29,12 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="post-image">Изображение поста</label>
+                <label for="post-image">Изображение поста №1</label>
                 <input type="file" id="post-image" class="form-control-file" name="post_image">
+            </div>
+            <div class="form-group">
+                <label for="post-image">Изображение поста №2</label>
+                <input type="file" id="post-image" class="form-control-file" name="post_image2">
             </div>
             <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             <button type="submit" class="btn btn-primary">ОК</button>
