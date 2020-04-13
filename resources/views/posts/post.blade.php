@@ -27,6 +27,7 @@
         </div>
     </div>
 </div>
+@include('partials.back')
 @endsection
 
 @section('navigation')
